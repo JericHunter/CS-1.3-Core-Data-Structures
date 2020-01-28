@@ -9,6 +9,7 @@ import string
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
 
+strings = string.digits + string.ascii_lowercase
 
 def decode(digits, base):
     """Decode given digits in given base to number in base 10.
@@ -17,12 +18,11 @@ def decode(digits, base):
     return: int -- integer representation of number (in base 10)"""
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
-    # TODO: Decode digits from binary (base 2)
-    # ...
-    # TODO: Decode digits from hexadecimal (base 16)
-    # ...
-    # TODO: Decode digits from any base (2 up to 36)
-    # ...
+    decoded = 0
+    for i, num in enumerate(reversed(digits)):
+        decoded += base**i * strings.index(num)
+
+    return decoded
 
 
 def encode(number, base):
@@ -34,12 +34,12 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
-    # TODO: Encode number in binary (base 2)
-    # ...
-    # TODO: Encode number in hexadecimal (base 16)
-    # ...
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
+    if number < base:
+        return strings[number]
+
+    number, remainder = divmod(number, base)
+
+    return encode(number, base) + strings[mod]
 
 
 def convert(digits, base1, base2):
@@ -51,15 +51,8 @@ def convert(digits, base1, base2):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
-    # TODO: Convert digits from base 2 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 2 to base 10 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 10 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from any base to any base (2 up to 36)
-    # ...
 
+    return encode(decode(digits, base1), base2)
 
 def main():
     """Read command-line arguments and convert given digits between bases."""
