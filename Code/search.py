@@ -33,7 +33,23 @@ def binary_search(array, item):
 
 def binary_search_iterative(array, item):
     # TODO: implement binary search iteratively here
-    pass
+
+        left = 0
+        right = len(array)- 1
+
+        while left <=  right:
+            mid = left + (right-left) // 2
+            mid_value = array[mid]
+            if mid_value == item :
+                return mid
+
+            elif item < mid_value:
+                right = mid - 1
+
+            else:
+                left = mid + 1
+
+        return None
     # once implemented, change binary_search to call binary_search_iterative
     # to verify that your iterative implementation passes all tests
 
