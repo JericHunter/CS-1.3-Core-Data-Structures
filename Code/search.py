@@ -27,27 +27,30 @@ def binary_search(array, item):
     """return the index of item in sorted array or None if item is not found"""
     # implement binary_search_iterative and binary_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
-    return binary_search_iterative(array, item)
-    # return binary_search_recursive(array, item)
+    # return binary_search_iterative(array, item)
+    return binary_search_recursive(array, item)
 
 
 def binary_search_iterative(array, item):
     # TODO: implement binary search iteratively here
 
-        left = 0
-        right = len(array)- 1
+        begin = 0
+        end = len(array)- 1
 
-        while left <=  right:
-            mid = left + (right-left) // 2
+        while begin <=  end:
+            mid = begin + (end-begin) // 2
             mid_value = array[mid]
+
             if mid_value == item :
                 return mid
 
             elif item < mid_value:
-                right = mid - 1
+                # now check left side of the array
+                end = mid - 1
 
-            else:
-                left = mid + 1
+            else:  # item greater than mid value
+                # check right side of the array
+                begin = mid + 1
 
         return None
     # once implemented, change binary_search to call binary_search_iterative
@@ -56,6 +59,23 @@ def binary_search_iterative(array, item):
 
 def binary_search_recursive(array, item, left=None, right=None):
     # TODO: implement binary search recursively here
-    pass
+    if left == None:
+        left = 0
+
+    if right == None:
+        right = len(array)-1
+
+    if left > right:
+        return None
+
+    mid = (left + right) // 2
+
+    if item < array[mid]:
+        return binary_search_recursive(array, item, left, mid -1)
+    elif item > array[mid]:
+        return binary_search_recursive(array, item, mid +1, right)
+    else:
+        return mid
+
     # once implemented, change binary_search to call binary_search_recursive
     # to verify that your recursive implementation passes all tests
