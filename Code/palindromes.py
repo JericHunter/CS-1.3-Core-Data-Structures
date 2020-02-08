@@ -38,16 +38,24 @@ def is_palindrome_iterative(text):
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
-    punct = " ?!,.;:-_'"
-    for char in punct:
-        text = text.replace(char, '')
-    left = 0
-    right = len(text)-1
+    if left is None or right is None:
+        left = 0
+        right = len(text) - 1
 
-    if text[left].lower()!= text[end].lower():
+    if left > right:
+        return True
+
+    text_lower = text.lower()
+
+    if not text_lower[left].isalpha():
+        return is_palindrome_recursive(text, left + 1, right)
+    if not text_lower[right].isalpha():
+        return is_palindrome_recursive(text, left, right - 1)
+
+    if text_lower[left] == text_lower[right]:
+        return is_palindrome_recursive(text, left + 1, right - 1)
+    else:
         return False
-    elif text[left].lower() == text[end].lower():
-        return is_palindrome_recursive(text,left+1,right-1)
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
 
