@@ -97,6 +97,28 @@ class LinkedList(object):
         if not (0 <= index <= self.size):
             raise ValueError('List index out of range: {}'.format(index))
         # TODO: Find the node before the given index and insert item after it
+        if index == 0:
+            self.prepend(item)
+        elif index == self.size:
+            self.append(item)
+        else:
+            node = self.head
+            new_node = Node(item)
+            given_index = 0
+            while node is not None:
+                if index == given_index:
+
+                    if index != self.length():
+                        new_node.next = node.next
+                        node.next = new_node
+                    else:
+                        node.next = new_node
+                        self.tail = new_node
+                    self.size += 1
+                    return
+
+                given_index += 1
+                node = node.next
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
@@ -112,6 +134,7 @@ class LinkedList(object):
             self.tail.next = new_node
         # Update tail to new node regardless
         self.tail = new_node
+        self.size +=1
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
@@ -127,6 +150,7 @@ class LinkedList(object):
             new_node.next = self.head
         # Update head to new node regardless
         self.head = new_node
+        self.size +=1
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
@@ -197,6 +221,7 @@ class LinkedList(object):
                     previous.next = None
                 # Update tail to the previous node regardless
                 self.tail = previous
+            self.size -=1
         else:
             # Otherwise raise an error to tell the user that delete has failed
             raise ValueError('Item not found: {}'.format(item))
