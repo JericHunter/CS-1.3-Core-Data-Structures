@@ -56,7 +56,7 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        Best and worst case running time: ??? under what conditions? [TODO]"""
+        Best and worst case running time:O(n) We are traversing the nodes to return node count """
         # Node counter initialized to zero
         node_count = 0
         # Start at the head node
