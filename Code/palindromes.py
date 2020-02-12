@@ -18,7 +18,7 @@ def is_palindrome(text):
 
 
 def is_palindrome_iterative(text):
-    """Best and worst case running time: O(n) because you have to traverse through half of the list"""
+    # TODO: implement the is_palindrome function iteratively here
     punct = " ?!,.;:-_'"
     for char in punct:
         text = text.replace(char, '')
@@ -37,7 +37,7 @@ def is_palindrome_iterative(text):
 
 
 def is_palindrome_recursive(text, left=None, right=None):
-"""Best and worst case running time: O(n) because you have to traverse through half of the list"""
+    # TODO: implement the is_palindrome function recursively here
     if left is None or right is None:
         left = 0
         right = len(text) - 1
