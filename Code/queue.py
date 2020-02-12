@@ -32,7 +32,7 @@ class LinkedQueue(object):
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – Why? Doing one operation to add an item at tail"""
         self.list.append(item)
 
     def front(self):
@@ -47,7 +47,7 @@ class LinkedQueue(object):
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – Why? You're only removing the item at the head node. So just one operation"""
         if self.is_empty():
             raise ValueError('Queue is empty.')
 
@@ -85,7 +85,7 @@ class ArrayQueue(object):
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(1) – Why? Only doing one operation to add the item at the end of the list"""
         self.list.append(item)
 
     def front(self):
@@ -98,7 +98,7 @@ class ArrayQueue(object):
     def dequeue(self):
         """Remove and return the item at the front of this queue,
         or raise ValueError if this queue is empty.
-        Running time: O(???) – Why? [TODO]"""
+        Running time: O(n) – Why? Because after removing the first index you have to shift all indexes"""
 
         if self.is_empty():
             raise ValueError("Queue is empty")
