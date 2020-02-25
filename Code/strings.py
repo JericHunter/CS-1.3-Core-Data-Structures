@@ -27,7 +27,7 @@ def find_index(text, pattern):
                    break
             else:
                return i
-   return None
+    return None
 
 def find_all_indexes(text, pattern):
     """Return a list of starting indexes of all occurrences of pattern in text,

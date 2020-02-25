@@ -39,7 +39,7 @@ def encode(number, base):
 
     number, remainder = divmod(number, base)
 
-    return encode(number, base) + strings[mod]
+    return encode(number, base) + strings[remainder]
 
 
 def convert(digits, base1, base2):
