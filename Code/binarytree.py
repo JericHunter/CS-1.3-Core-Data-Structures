@@ -17,23 +17,35 @@ class BinaryTreeNode(object):
         """Return True if this node is a leaf (has no children)."""
         # TODO: Check if both left child and right child have no value
         if self.left and self.right == None:
-            return self.left and self.right 
+            return True
 
     def is_branch(self):
         """Return True if this node is a branch (has at least one child)."""
         # TODO: Check if either left child or right child has a value
-        return ... or ...
+        if self.left is not None or self.right is not None:
+            return True
 
     def height(self):
         """Return the height of this node (the number of edges on the longest
         downward path from this node to a descendant leaf node).
         TODO: Best and worst case running time: ??? under what conditions?"""
+        if self.left is None and self.right is None:
+            return 0
+
+        left_height = 0
+        right_height = 0
+
         # TODO: Check if left child has a value and if so calculate its height
-        ...
+        if self.left:
+            left_height = self.left.height() + 1
         # TODO: Check if right child has a value and if so calculate its height
-        ...
+       if self.right:
+            right_height = self.right.height() + 1
         # Return one more than the greater of the left height and right height
-        ...
+        if right_height > left_height:
+            return right_height
+        return left_height
+
 
 
 class BinarySearchTree(object):
@@ -59,7 +71,8 @@ class BinarySearchTree(object):
         downward path from this tree's root node to a descendant leaf node).
         TODO: Best and worst case running time: ??? under what conditions?"""
         # TODO: Check if root node has a value and if so calculate its height
-        ...
+        if self.root:
+            return self.root.height()
 
     def contains(self, item):
         """Return True if this binary search tree contains the given item.
@@ -78,7 +91,7 @@ class BinarySearchTree(object):
         # Find a node with the given item, if any
         node = self._find_node_recursive(item, self.root)
         # TODO: Return the node's data if found, or None
-        return node.data if ... else None
+        return node.data if node else None
 
     def insert(self, item):
         """Insert the given item in order into this binary search tree.
@@ -87,22 +100,21 @@ class BinarySearchTree(object):
         # Handle the case where the tree is empty
         if self.is_empty():
             # TODO: Create a new root node
-            self.root = ...
+            self.root = BinaryTreeNode(item)
             # TODO: Increase the tree size
-            self.size ...
+            self.size += 1
             return
         # Find the parent node of where the given item should be inserted
         parent = self._find_parent_node_recursive(item, self.root)
         # TODO: Check if the given item should be inserted left of parent node
-        if ...:
+        if parent.data > item:
             # TODO: Create a new node and set the parent's left child
-            parent.left = ...
+            parent.left = BinaryTreeNode(item)
         # TODO: Check if the given item should be inserted right of parent node
-        elif ...:
+        else:
             # TODO: Create a new node and set the parent's right child
-            parent.right = ...
-        # TODO: Increase the tree size
-        self.size ...
+            parent.right = BinaryTreeNode(item)
+        self.size += 1
 
     def _find_node_iterative(self, item):
         """Return the node containing the given item in this binary search tree,
