@@ -54,7 +54,6 @@ class HashSet(object):
         return new_set
 
 
-
     def difference(self, other_set):
         """Returns a new set that is the difference of this set and other_set"""
         new_set = HashSet()
