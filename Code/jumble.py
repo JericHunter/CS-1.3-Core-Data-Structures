@@ -11,31 +11,28 @@ class Jumble(object):
             sortedict[sort] = word
         return sortedict
 
+    def create_word_solver(self,word):
+        sorted_input = ''.join(sorted(word))
+
+        if sorted_input in self.dict:
+            return self.dict[sorted_input]
     def create_solver(self, words):
         # List to add solved words to
-        output = []
-        sorted_input = ''.join(sorted(words))
+        solved = []
         # loop through the given words
         for word in words:
-            if sorted_input in self.dict:
-                return self.dict[sorted_input]
-            else:
-                return None
+            solved_words = self.create_word_solver(word)
             # check to make sure there are words
-            if self.dict[sorted_input] is not None:
-
-                # if there is only one option for the given word
-                if len(self.dict[sorted_input]) == 1:
-                    # add the single word to our output array
-                    output.extend(self.dict[sorted_input])
+            if solved_words:
+                if len(solved_words) == 1:
+                    solved.extend(solved_words)
                 else:
-                    # add the full array of solved word options
-                    output.append(self.dict[sorted_input])
-        # return the final word list
-        return output
+                    solved.append(solved_words)
+        # return the word list
+        return solved
 
 if __name__ == "__main__":
     jumble = Jumble()
-    words = ['shast', 'doore', 'ditnic', 'catili']
-    self.dict[sorted_input] = jumble.create_solver(words)
+    words = ['shast', 'doore', 'ditnic', 'bureek']
+    solved_words = jumble.create_solver(words)
     print(solved_words)
