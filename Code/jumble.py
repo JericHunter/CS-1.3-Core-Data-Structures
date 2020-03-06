@@ -25,7 +25,7 @@ class Jumble(object):
             # check to make sure there are words
             if solved_words:
                 if len(solved_words) == 1:
-                    solved.extend(solved_words)
+                    solved.prepend(solved_words)
                 else:
                     solved.append(solved_words)
         # return the word list
